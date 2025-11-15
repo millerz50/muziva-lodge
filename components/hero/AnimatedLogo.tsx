@@ -1,4 +1,3 @@
-// app/components/hero/AnimatedLogo.tsx
 "use client";
 
 import Image from "next/image";
@@ -15,7 +14,7 @@ export default function AnimatedLogo() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setAnimate(true);
-          setTimeout(() => setAnimate(false), 1200); // reset after bounce
+          setTimeout(() => setAnimate(false), 1200);
         }
       },
       { threshold: 0.5 }
@@ -28,15 +27,18 @@ export default function AnimatedLogo() {
   return (
     <div
       id="hero-logo"
-      className={`relative w-32 h-32 mb-6 ${
-        animate ? "animate-bounceOnce" : ""
+      className={`mb-6 flex justify-center transition-transform duration-700 ease-out ${
+        animate ? "scale-105" : "scale-100"
       }`}>
-      <Image
-        src="/Muziva-logo.png"
-        alt="Muziva Lodge Logo"
-        fill
-        className="rounded-full object-cover"
-      />
+      <div className="relative w-[300px] h-[120px] sm:w-[360px] sm:h-[140px]">
+        <Image
+          src="/Muziva-logo.png"
+          alt="Muziva Lodge Logo"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-// app/layout.tsx
+import AnimatedMuzivaLogo from "@/components/logo/AnimatedMuzivaLogo";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Muziva Lodge",
     description:
       "Discover luxury rooms, fine dining, and breathtaking views at Muziva Lodge in Zimbabwe.",
-    url: "https://muziva-lodge.com", // replace with your domain
+    url: "https://muziva-lodge.com",
     siteName: "Muziva Lodge",
     images: [
       {
@@ -58,7 +58,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900 text-slate-100`}>
-        {children}
+        {/* ✅ Global loader */}
+        <div className="fixed inset-0 flex items-center justify-center bg-slate-900 z-50 animate-fadeOut delay-10000">
+          <AnimatedMuzivaLogo />
+        </div>
+
+        {/* ✅ Main app content */}
+        <div className="relative z-0">{children}</div>
       </body>
     </html>
   );

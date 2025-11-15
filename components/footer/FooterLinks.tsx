@@ -1,6 +1,6 @@
 // app/components/footer/FooterLinks.tsx
-import { footerLinks } from "@/app/config/footerLinks";
 import Link from "next/link";
+import { footerLinks } from "../../app/config/footerLinks";
 
 export default function FooterLinks() {
   return (

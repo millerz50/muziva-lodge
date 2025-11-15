@@ -4,13 +4,15 @@ import Image from "next/image";
 export default function Brand() {
   return (
     <div className="flex items-center gap-3">
-      <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 animate-pulse">
+      {/* Increased circle size */}
+      <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-orange-500 animate-pulse">
         <Image
           src="/Muziva-logo.png"
           alt="Muziva Lodge Logo"
-          width={40}
-          height={40}
-          className="rounded-full"
+          width={56} // ✅ larger logo size
+          height={56}
+          className="rounded-full object-contain"
+          priority
         />
       </div>
       <span className="text-lg md:text-xl font-semibold tracking-tight text-slate-100">
