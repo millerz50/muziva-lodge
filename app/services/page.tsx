@@ -177,7 +177,7 @@ const ServicesPage: React.FC = () => {
             </h3>
             <p className="text-slate-300 leading-relaxed">
               Guided nature walks, birdwatching, and other curated outdoor
-              experiences showcasing the region's biodiversity.
+              experiences showcasing the region&apos;s biodiversity.
             </p>
           </div>
         </article>
