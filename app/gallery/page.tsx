@@ -74,7 +74,6 @@ const GalleryPage: React.FC = () => {
       {/* JSON-LD for image gallery */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(imageGalleryStructuredData),
         }}

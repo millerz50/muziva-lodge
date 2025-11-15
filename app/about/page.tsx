@@ -69,8 +69,7 @@ const AboutPage: React.FC = () => {
     <main className="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-slate-200 focus:text-slate-900 focus:px-3 focus:py-2 rounded"
-      >
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-slate-200 focus:text-slate-900 focus:px-3 focus:py-2 rounded">
         Skip to content
       </a>
 
@@ -79,15 +78,13 @@ const AboutPage: React.FC = () => {
       {/* JSON-LD for structured data */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgStructuredData) }}
       />
 
       <section
         id="hero"
         className="px-6 py-20 text-center bg-gradient-to-b from-slate-900 to-slate-800"
-        aria-labelledby="about-heading"
-      >
+        aria-labelledby="about-heading">
         <Image
           src="/Muziva-logo.png"
           alt="Muziva Lodge logo: stylised letter M with palm trees and warm desert gradient"
@@ -99,8 +96,7 @@ const AboutPage: React.FC = () => {
 
         <h1
           id="about-heading"
-          className="text-4xl md:text-5xl font-bold text-orange-400"
-        >
+          className="text-4xl md:text-5xl font-bold text-orange-400">
           About Muziva Lodge
         </h1>
 
@@ -113,8 +109,7 @@ const AboutPage: React.FC = () => {
       <section
         id="content"
         className="px-6 py-16 max-w-5xl mx-auto grid md:grid-cols-2 gap-12"
-        aria-labelledby="our-story-heading"
-      >
+        aria-labelledby="our-story-heading">
         <div>
           <Image
             src="/interior.jpg"
@@ -129,8 +124,7 @@ const AboutPage: React.FC = () => {
           />
           <h2
             id="our-story-heading"
-            className="text-2xl font-semibold text-orange-400 mb-4"
-          >
+            className="text-2xl font-semibold text-orange-400 mb-4">
             Our Story
           </h2>
           <p className="text-slate-300 leading-relaxed">
@@ -169,8 +163,7 @@ const AboutPage: React.FC = () => {
                 href="https://maps.app.goo.gl/fmEnt2sH4Db5i5Sq5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-400 underline"
-              >
+                className="text-orange-400 underline">
                 Open in Google Maps
               </a>
             </p>
@@ -184,4 +177,3 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
-

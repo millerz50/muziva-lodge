@@ -2,9 +2,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-export default function GalleryGrid() {
+const GalleryGrid: React.FC = () => {
   const images: { src: string; alt: string }[] = Array.from(
     { length: 7 },
     (_, i) => ({
@@ -15,13 +15,17 @@ export default function GalleryGrid() {
 
   const [zoomed, setZoomed] = useState<number | null>(null);
 
-  const nextImage = () => {
-    if (zoomed !== null) setZoomed((zoomed + 1) % images.length);
-  };
-  const prevImage = () => {
-    if (zoomed !== null)
-      setZoomed((zoomed - 1 + images.length) % images.length);
-  };
+  const nextImage = useCallback(() => {
+    setZoomed((current) =>
+      current === null ? null : (current + 1) % images.length
+    );
+  }, [images.length]);
+
+  const prevImage = useCallback(() => {
+    setZoomed((current) =>
+      current === null ? null : (current - 1 + images.length) % images.length
+    );
+  }, [images.length]);
 
   // Close modal + keyboard navigation
   useEffect(() => {
@@ -32,18 +36,22 @@ export default function GalleryGrid() {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [zoomed]);
+  }, [zoomed, nextImage, prevImage]);
 
   // Prevent background scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = zoomed !== null ? "hidden" : "";
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = zoomed !== null ? "hidden" : previous;
+    return () => {
+      document.body.style.overflow = previous;
+    };
   }, [zoomed]);
 
   return (
     <section className="w-full px-4 sm:px-6 py-12 sm:py-16 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
       {images.map((img, i) => (
         <div
-          key={i}
+          key={img.src}
           className="relative w-full h-56 sm:h-72 md:h-80 rounded-xl overflow-hidden shadow-lg cursor-pointer group"
           onClick={() => setZoomed(i)}>
           <Image
@@ -54,7 +62,6 @@ export default function GalleryGrid() {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority={i < 3}
           />
-          {/* Overlay gradient for sleek look */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
       ))}
@@ -72,7 +79,8 @@ export default function GalleryGrid() {
             {/* Prev Button */}
             <button
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors">
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors"
+              aria-label="Previous image">
               ‹
             </button>
 
@@ -90,14 +98,16 @@ export default function GalleryGrid() {
             {/* Next Button */}
             <button
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors">
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors"
+              aria-label="Next image">
               ›
             </button>
 
             {/* Close Button */}
             <button
               onClick={() => setZoomed(null)}
-              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors">
+              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors"
+              aria-label="Close">
               ✕
             </button>
           </div>
@@ -105,4 +115,6 @@ export default function GalleryGrid() {
       )}
     </section>
   );
-}
+};
+
+export default GalleryGrid;

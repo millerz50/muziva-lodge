@@ -2,6 +2,7 @@
 import Footer from "@/components/Footer"; // server
 import Navbar from "@/components/Navbar"; // client
 import Image from "next/image";
+import React from "react";
 
 export const metadata = {
   title: "Services — Muziva Lodge",
@@ -60,7 +61,7 @@ const serviceStructuredData = {
   sameAs: ["https://muziva-lodge.vercel.app"],
 };
 
-export default function ServicesPage() {
+const ServicesPage: React.FC = () => {
   return (
     <main className="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
       <a
@@ -74,7 +75,6 @@ export default function ServicesPage() {
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(serviceStructuredData),
         }}
@@ -186,4 +186,6 @@ export default function ServicesPage() {
       <Footer />
     </main>
   );
-}
+};
+
+export default ServicesPage;
